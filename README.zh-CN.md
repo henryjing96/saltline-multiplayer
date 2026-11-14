@@ -12,7 +12,7 @@
 
 ## 这是什么
 
-*Saltline* 原本是一个单机网页射击游戏：一座港口的安保机器失控，你独自潜入，切断三个中继站，再坐船撤离。整个游戏只有一个 1.4 MB 的 HTML 文件，场景、机器和声音都在浏览器里实时生成。
+[*Saltline*](https://claude.ai/artifact/BGY1SztrAYcJQHSsnHHGmp) 原本是一个单机网页射击游戏，由 Claude Fable 5.2 根据一段提示词生成，这次生成由 Felix Rieseberg 发起：一座港口的安保机器失控，你独自潜入，切断三个中继站，再坐船撤离。整个游戏只有一个 1.4 MB 的 HTML 文件，场景、机器和声音都在浏览器里实时生成。
 
 本项目在不改动这个文件的前提下，给它加上了多人联机：
 
@@ -31,11 +31,23 @@
 
 需要 [Node.js](https://nodejs.org) 18 或更新版本（开发和测试用的是 Node 24），没有其他依赖。玩家只需要一个较新的桌面浏览器。
 
+**最简单：单文件。** 从[最新 Release](https://github.com/henryjing96/saltline-multiplayer/releases/latest) 下载 `saltline.js`，然后运行：
+
+```sh
+node saltline.js        # 默认端口 8080，换端口写成 node saltline.js 9000
+```
+
+这个文件包含了整个游戏。启动时它会把内容解压到系统临时目录，再从那里运行。
+
+**或者从源码运行：**
+
 ```sh
 git clone https://github.com/henryjing96/saltline-multiplayer.git
 cd saltline-multiplayer
 node server.js          # 默认端口 8080，换端口写成 node server.js 9000
 ```
+
+然后：
 
 1. 在运行服务器的电脑上打开 `http://localhost:8080`。
 2. 选择模式、名字和角色。
@@ -95,7 +107,7 @@ node server.js          # 默认端口 8080，换端口写成 node server.js 900
 | `operator-rig.js` | GLB 角色：加载、动画混合、持枪 IK |
 | `spawn-points.js` | 出生点 |
 | `operators/` | 三个角色模型、选角图、glTF 加载器 |
-| `tools/` | 离线建模脚本（Blender `bpy`）和模型压缩脚本；所需素材不在本仓库内（来源见 [`operators/SOURCES.md`](operators/SOURCES.md)） |
+| `tools/` | 离线建模脚本（Blender `bpy`）、模型压缩脚本，以及生成单文件发布版的 `bundle.js`（`node tools/bundle.js` 生成 `dist/saltline.js`）；所需素材不在本仓库内（来源见 [`operators/SOURCES.md`](operators/SOURCES.md)） |
 
 ## 限制
 
@@ -107,4 +119,4 @@ node server.js          # 默认端口 8080，换端口写成 node server.js 900
 
 - **联机部分的代码**（`server.js`、`multiplayer.js`、`multiplayer.css`、`mp-strings.js`、`i18n-zh.js`、`operators.js`、`operator-rig.js`、`spawn-points.js`、`tools/`）以 [MIT 许可](LICENSE)发布。
 - **角色模型**由第三方素材制作，素材许可为 CC0 1.0、CC BY 4.0 和 MIT。作者和许可见 [`operators/SOURCES.md`](operators/SOURCES.md)；其中 CC BY 4.0 的素材在再分发时须保留署名。
-- **`original.html`** 是单机游戏 *Saltline* 原作，不是本项目的作品。它取自公开渠道，本项目不清楚其作者，也不对它授予任何许可；放在仓库里只是为了让联机部分可以直接运行，文件本身未作修改。**如果你是权利人并希望移除，请提交 issue，我们会尽快下架。**
+- **`original.html`** 是单机游戏 *Saltline* 原作，不是本项目的作品。它由 Claude Fable 5.2 生成，这次生成由 Felix Rieseberg（Anthropic）发起，并于 [2026 年 11 月 9 日发布在 X 上](https://x.com/felixrieseberg/status/2119925633564463609)；原始可玩版本见[这个 Claude artifact](https://claude.ai/artifact/BGY1SztrAYcJQHSsnHHGmp)。游戏的全部功劳归原作者。本项目不对它授予任何许可；放在仓库里只是为了让联机部分可以直接运行，本项目未对该文件作任何修改。**如果你是权利人并希望移除，请提交 issue，我们会尽快下架。**
